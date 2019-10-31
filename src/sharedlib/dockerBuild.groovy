@@ -7,7 +7,7 @@ class dockerBuild implements Serializable {
     String environment
 dockerBuild(steps,env) {
     this.steps = steps
-    //this.configjson = configjson
+    this.env = env
     }
 def public buildDocker() {
     //repoName = configjson.repoName
