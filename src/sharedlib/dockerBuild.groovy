@@ -2,10 +2,10 @@ package sharedlib
 class dockerBuild implements Serializable {
     def steps
     private version = null
-    def configjson
+    def env = null
     String repoName
     String environment
-dockerBuild(steps) {
+dockerBuild(steps,env) {
     this.steps = steps
     //this.configjson = configjson
     }
@@ -18,7 +18,12 @@ def public buildDocker() {
     ''')
   }
 def public deployDocker() {
+    String username = env.DUser_Name
+    String password = env.DPassword
+    steps.echo "${username}"
+    steps.echo "${password}"
     steps.powershell(returnStdout: true, script: '''
+    //docker login -u  -p 
     docker push bhvkrishna/samplehelloworld:green
     docker push bhvkrishna/samplehelloworld:ver1
     ''')
