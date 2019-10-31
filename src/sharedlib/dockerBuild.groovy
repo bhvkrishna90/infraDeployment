@@ -17,7 +17,7 @@ def public buildDocker() {
      docker build -t bhvkrishna/samplehelloworld:ver1 .
     ''')
   }
-def public deployDeploy() {
+def public deployDocker() {
     steps.powershell(returnStdout: true, script: '''
     docker push bhvkrishna/samplehelloworld:green
     docker push bhvkrishna/samplehelloworld:ver1
