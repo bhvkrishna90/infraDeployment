@@ -13,9 +13,10 @@ def public buildDocker() {
     //repoName = configjson.repoName
     //environment = configjson.environment
     steps.powershell(returnStdout: true, script: '''
-     docker build -t bhvkrishna/samplehelloworld:green .
-     docker build -t bhvkrishna/samplehelloworld:ver1 .
-     docker run -p 8888:8080 bhvkrishna/samplehelloworld:green
+     String id = docker ps -q
+     docker stop (docker ps -q)
+     docker build -t bhvkrishna/samplehelloworld:blue .
+     docker run -p 8888:8080 bhvkrishna/samplehelloworld:blue
     ''')
   }
 def public deployDocker() {
