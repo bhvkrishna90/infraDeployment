@@ -1,6 +1,0 @@
-aws_region = "us-east-1"
-az1 = "us-east-1a"
-az2 = "us-east-1b"
-cluster_name = "hackathon2k19"
-cluster_version = "1.14"
-iamrole_Name = "terraform-eks-hackathon-cluster"
