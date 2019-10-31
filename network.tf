@@ -1,8 +1,6 @@
 #Cluster VPC
 resource "aws_vpc" "cluster-vpc" {
   cidr_block       = "10.0.0.0/16"
-  region           = "${var.aws_region}"
-
   tags = {
     Name = "Cluster-VPC"
   }
@@ -10,7 +8,7 @@ resource "aws_vpc" "cluster-vpc" {
 #Subnet-1
 resource "aws_subnet" "subnet-1" {
   vpc_id     = "${aws_vpc.cluster-vpc.id}"
-  cidr_block = "10.0.1.0/21"
+  cidr_block = "10.0.0.0/21"
   map_public_ip_on_launch = "true"
   availability_zone = "${var.az1}"
 
@@ -46,10 +44,18 @@ resource "aws_route_table" "routetable" {
     gateway_id = "${aws_internet_gateway.vpcigw.id}"
   }
 }
+resource "aws_route_table_association" "routetable_association" {
+  subnet_id      = "${aws_subnet.subnet-1.id}"
+  route_table_id = "${aws_route_table.routetable.id}"
+}
+resource "aws_route_table_association" "routetable_association2" {
+  subnet_id      = "${aws_subnet.subnet-2.id}"
+  route_table_id = "${aws_route_table.routetable.id}"
+}
 #Cluster VPC Security Group
 resource "aws_security_group" "cluster-sg" {
   name        = "cluster-sg"
-  description = "Allow ssh"
+  description = "Allow https"
   vpc_id      = "${aws_vpc.cluster-vpc.id}"
 
   ingress {
