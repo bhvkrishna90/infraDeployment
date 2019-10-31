@@ -21,9 +21,8 @@ def public deployDocker() {
     String username = env.DUser_Name
     String password = env.DPassword
     steps.echo "${username}"
-    steps.echo "${password}"
     steps.powershell(returnStdout: true, script: '''
-    //docker login -u  -p 
+    docker login -u "${username}" -p "${password}"
     docker push bhvkrishna/samplehelloworld:green
     docker push bhvkrishna/samplehelloworld:ver1
     ''')
