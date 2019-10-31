@@ -15,6 +15,7 @@ def public buildDocker() {
     steps.powershell(returnStdout: true, script: '''
      docker build -t bhvkrishna/samplehelloworld:green .
      docker build -t bhvkrishna/samplehelloworld:ver1 .
+     docker run -p 8888:8080 bhvkrishna/samplehelloworld:green
     ''')
   }
 def public deployDocker() {
