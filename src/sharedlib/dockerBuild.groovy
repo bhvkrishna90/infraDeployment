@@ -22,7 +22,6 @@ def public deployDocker() {
     String password = env.DPassword
     steps.echo "${username}"
     steps.powershell(returnStdout: true, script: '''
-    docker login
     docker push bhvkrishna/samplehelloworld:green
     docker push bhvkrishna/samplehelloworld:ver1
     ''')
